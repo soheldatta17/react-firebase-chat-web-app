@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React, { useState } from 'react';
+import About from './components/About';
+import Auth from './components/Auth';
+import Find from './components/Find';
+import Cookies from "universal-cookie";
+import "./styles/Home.css"
+const cookies = new Cookies();
+const App = () => {
+  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [Email, setEmail] = useState("")
+  const [Room, setRoom] = useState(0)
+  const [Icon, setIcon] = useState("")
+  if(!isAuth)
+  {
+    return(
+      <Auth setIsAuth={setIsAuth} setEmail={setEmail} setIcon={setIcon}/>
+    )
+  }
+  else{
+    if (Room==0)
+    {
+      // alert(Icon)
+      return(
+        <Find setIsAuth={setIsAuth} setEmail={setEmail} setRoom={setRoom} Icon={Icon} setIcon={setIcon}/>
+      )
+    }
+    else
+    {
+    return(
+      <About setIsAuth={setIsAuth} setEmail={setEmail} Room={Room} setRoom={setRoom} Icon={Icon} setIcon={setIcon}/>
+    )
+    }
+  }
+};
 
 export default App;
