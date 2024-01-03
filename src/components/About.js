@@ -90,7 +90,7 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
       console.log(messages);
       setMessages(messages);
     });
-``
+
     return () => unsubscribe();
   }, []);
 
