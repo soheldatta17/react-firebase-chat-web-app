@@ -17,17 +17,23 @@ const App = () => {
     )
   }
   else{
+    
+    const photoURL = (cookies.get('auth-token') && cookies.get('auth-token').photoURL) || '';
+    // setIcon(photoURL)
+
+
+    // alert(photoURL)
     if (Room==0)
     {
       // alert(Icon)
       return(
-        <Find setIsAuth={setIsAuth} setEmail={setEmail} setRoom={setRoom} Icon={Icon} setIcon={setIcon}/>
+        <Find setIsAuth={setIsAuth} setEmail={setEmail} setRoom={setRoom} Icon={photoURL} setIcon={setIcon}/>
       )
     }
     else
     {
     return(
-      <About setIsAuth={setIsAuth} setEmail={setEmail} Room={Room} setRoom={setRoom} Icon={Icon} setIcon={setIcon}/>
+      <About setIsAuth={setIsAuth} setEmail={setEmail} Room={Room} setRoom={setRoom} Icon={photoURL} setIcon={setIcon}/>
     )
     }
   }

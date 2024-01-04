@@ -60,20 +60,7 @@ const Find = ({ setIsAuth, setEmail, setRoom, Icon, setIcon }) => {
             console.error(err);
         }
     }
-
-
-    const authenticate = async () => {
-        try {
-            const result = await signInWithPopup(auth, provider);
-            cookies.set("auth-token", result.user.refreshToken);
-            alert(auth?.currentUser?.photoURL)
-            alert(auth?.currentUser?.email)
-            setEmail(auth?.currentUser?.email)
-            setIsAuth(true);
-        } catch (err) {
-            console.error(err);
-        }
-    }
+    
 
     return (
         <div className="start">

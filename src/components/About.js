@@ -117,6 +117,7 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
         <div className="profile-icon">
           <img src={Icon} alt="Profile Icon" />
         </div>
+        <p>Try 2 different browsers and mail ID</p>
         <p>Room ID: {formattedNumber}</p>
         <br />
         <div className="chat-box">

@@ -62,7 +62,13 @@ const Auth = ({ setIsAuth, setEmail, setIcon }) => {
   const authenticate = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      cookies.set("auth-token", result.user.refreshToken);
+      // cookies.set("auth-token", result.user.refreshToken, { 
+      //   sameSite: 'None', 
+      //   secure: true,
+      //   photo: auth?.currentUser?.photoURL
+      // });
+      cookies.set('auth-token', JSON.stringify({ refreshToken: result.user.refreshToken, photoURL: auth?.currentUser?.photoURL }), { sameSite: 'None', secure: true });
+      
       // alert(auth?.currentUser?.photoURL)
       setIcon(auth?.currentUser?.photoURL)
       setEmail(auth?.currentUser?.email)
