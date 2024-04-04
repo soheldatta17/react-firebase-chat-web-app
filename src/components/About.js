@@ -5,9 +5,13 @@ import "../styles/Home.css";
 import Cookies from "universal-cookie";
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import { RiDeleteBinLine } from 'react-icons/ri';
 import {
   collection,
   addDoc,
+  doc,
+  setDoc,
+  deleteDoc,
   where,
   serverTimestamp,
   onSnapshot,
@@ -78,6 +82,7 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
   };
 
   useEffect(() => {
+    console.log(auth.currentUser.uid)
     const queryMessages = query(messagesRef,
       where("room", "==", roomasstring),
       orderBy("createdAt")
@@ -86,6 +91,7 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
       let messages = [];
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
+        console.log(doc.id)
       });
       console.log(messages);
       setMessages(messages);
@@ -98,16 +104,36 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
   // Function to handle changes in the chat input
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(messagesRef)
     if (newMessage === "") return;
+
     await addDoc(messagesRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
       room: roomasstring,
+      mid: auth.currentUser.uid
     });
 
     setNewMessage("");
+  };
+  const handleDelete = async (messageId) => {
+    try {
+      // Reference to the document to be deleted
+      console.log(messageId)
+      const messageDocRef = doc(db, "messages", messageId);
+
+
+      // Delete the document
+      await deleteDoc(messageDocRef);
+
+      // Optionally, you may remove the deleted message from the state to reflect the change immediately
+      // setMessages(messages.filter(message => message.id !== messageId));
+
+      console.log("Message deleted successfully");
+    } catch (error) {
+      console.error("Error deleting message: ", error);
+    }
   };
 
   return (
@@ -119,12 +145,18 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
         </div>
         <p>Try 2 different browsers and mail ID</p>
         <p>Room ID: {formattedNumber}</p>
+        <p>UID: {auth.currentUser.uid}</p>
         <br />
         <div className="chat-box">
           <div className="messages">
             {messages.map((message) => (
-              <div key={message.id} className={`message ${message.user === auth.currentUser.displayName ? 'user-message' : 'other-message'}`}>
-                <span className="user">{message.user}:</span> {message.text}
+              <div key={message.id} className={`message ${message.mid === auth.currentUser.uid ? 'user-message' : 'other-message'}`}>
+                <p style={{color: "white"}}><span className="user"><strong>{message.user}:</strong></span> {message.text}</p>
+                {message.mid === auth.currentUser.uid && (
+                  <p onClick={() => handleDelete(message.id)} className="delete-button">
+                    <RiDeleteBinLine className="delete-icon" size={24} style={{color: "white", cursor: "pointer", alignContent: "center"}} /> {/* Adding the dustbin icon */}
+                  </p>
+                )}
               </div>
             ))}
           </div>

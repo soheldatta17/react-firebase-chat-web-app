@@ -5,14 +5,23 @@ import { getFirestore } from "@firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDvfeuGgx_jgGnhsA-zVX3SqzR14afbgp0",
-  authDomain: "chat-6b730.firebaseapp.com",
-  projectId: "chat-6b730",
-  storageBucket: "chat-6b730.appspot.com",
-  messagingSenderId: "184086105188",
-  appId: "1:184086105188:web:e4f604b7baa242341ae371",
-  measurementId: "G-ZT55R2KZN7"
+
+  apiKey: "AIzaSyCPhNGjB0jsHW1pRx0jPCZ92ixzivMWSCw",
+
+  authDomain: "sports-23788.firebaseapp.com",
+
+  projectId: "sports-23788",
+
+  storageBucket: "sports-23788.appspot.com",
+
+  messagingSenderId: "369133702550",
+
+  appId: "1:369133702550:web:39e4ff8aef3bcf746761b7",
+
+  measurementId: "G-BR34XKS6Y3"
+
 };
+
 
 
 // Initialize Firebase
