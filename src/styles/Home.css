@@ -1,7 +1,7 @@
 body {
     justify-content: center;
     text-align: center;
-    background: url('https://firebasestorage.googleapis.com/v0/b/fir-course-c2fc5.appspot.com/o/projectFiles%2F12.jpg?alt=media&token=3ef14a3c-4423-4a1a-b7e4-b0565b3adf41') center/cover no-repeat;
+    background: "pink";
     margin: 0;
     position: relative;
 }
