@@ -84,7 +84,7 @@ const Auth = ({ setIsAuth, setEmail, setIcon }) => {
       <h1>Let's Chat!</h1>
       <div className='para'>
         <p>Let's chat is a real-time chat application created with React JS and Firebase.</p>
-        <img src="https://firebasestorage.googleapis.com/v0/b/fir-course-c2fc5.appspot.com/o/projectFiles%2FUntitled.png?alt=media&token=a3802048-b15c-4c13-b039-a71a7732ad4c" alt="Description" />
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/006/692/724/small_2x/chatting-message-icon-template-black-color-editable-chatting-message-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg" alt="Description" />
         <br />
         <button onClick={authenticate}> Sign In With Google </button><br /><br />
         {/* <button onClick={authenticate_check}> Log Out </button><br />
