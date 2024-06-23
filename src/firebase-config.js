@@ -3,24 +3,26 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
 
-
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCPhNGjB0jsHW1pRx0jPCZ92ixzivMWSCw",
+  apiKey: "AIzaSyDvfeuGgx_jgGnhsA-zVX3SqzR14afbgp0",
 
-  authDomain: "sports-23788.firebaseapp.com",
+  authDomain: "chat-6b730.firebaseapp.com",
 
-  projectId: "sports-23788",
+  databaseURL: "https://chat-6b730-default-rtdb.asia-southeast1.firebasedatabase.app",
 
-  storageBucket: "sports-23788.appspot.com",
+  projectId: "chat-6b730",
 
-  messagingSenderId: "369133702550",
+  storageBucket: "chat-6b730.appspot.com",
 
-  appId: "1:369133702550:web:39e4ff8aef3bcf746761b7",
+  messagingSenderId: "184086105188",
 
-  measurementId: "G-BR34XKS6Y3"
+  appId: "1:184086105188:web:e4f604b7baa242341ae371",
+
+  measurementId: "G-ZT55R2KZN7"
 
 };
+
 
 
 
