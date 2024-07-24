@@ -146,7 +146,7 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
         <p style={{ textAlign: 'center' }}>Room ID: {formattedNumber}</p>
         <p style={{ textAlign: 'center' }}>UID: {auth.currentUser.uid}</p>
         <br />
-        <div className="chat-box" style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '10px', background: 'url("https://brunty.me/files/chat-bgs/1.0/blue-pink-100-pct.png")', maxHeight: '400px', overflowY: 'auto' }}>
+        <div className="chat-box" style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '10px', background: 'url("https://i.pinimg.com/564x/6c/78/4f/6c784f07146f1a05372059daff4fdf88.jpg")', maxHeight: '400px', overflowY: 'auto' }}>
           <div className="messages">
             {messages.map((message) => (
               <div
