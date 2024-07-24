@@ -135,53 +135,66 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
       console.error("Error deleting message: ", error);
     }
   };
-
   return (
-    <div className="start">
+    <div className="start" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
       <h1>Start Chatting!</h1>
-      <div className='para'>
+      <div className="para" style={{ width: '100%', maxWidth: '600px' }}>
         <div className="profile-icon">
           <img src={Icon} alt="Profile Icon" />
         </div>
-        <p>Try 2 different browsers and mail ID</p>
-        <p>Room ID: {formattedNumber}</p>
-        <p>UID: {auth.currentUser.uid}</p>
+        <p style={{ textAlign: 'center' }}>Try 2 different browsers and mail ID</p>
+        <p style={{ textAlign: 'center' }}>Room ID: {formattedNumber}</p>
+        <p style={{ textAlign: 'center' }}>UID: {auth.currentUser.uid}</p>
         <br />
-        <div className="chat-box">
+        <div className="chat-box" style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '10px', background: 'url("https://brunty.me/files/chat-bgs/1.0/blue-pink-100-pct.png")', maxHeight: '400px', overflowY: 'auto' }}>
           <div className="messages">
             {messages.map((message) => (
-              <div key={message.id} className={`message ${message.mid === auth.currentUser.uid ? 'user-message' : 'other-message'}`}>
-                <p style={{color: "white"}}><span className="user"><strong>{message.user}:</strong></span> {message.text}</p>
+              <div
+                key={message.id}
+                className={`message ${message.mid === auth.currentUser.uid ? 'other-message' : 'user-message'}`}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: message.mid === auth.currentUser.uid ? 'flex-end' : 'flex-start',
+                  marginBottom: '10px'
+                }}
+              >
+                <p style={{ background: message.mid === auth.currentUser.uid ? '#DCF8C6' : '#FFF', color: '#333', padding: '10px', borderRadius: '10px', maxWidth: '80%' }}>
+                  <span className="user" style={{ fontWeight: 'bold' }}>{message.user}:</span> {message.text}
+                </p>
                 {message.mid === auth.currentUser.uid && (
-                  <p onClick={() => handleDelete(message.id)} className="delete-button">
-                    <RiDeleteBinLine className="delete-icon" size={24} style={{color: "white", cursor: "pointer", alignContent: "center"}} /> {/* Adding the dustbin icon */}
+                  <p
+                    onClick={() => handleDelete(message.id)}
+                    className="delete-button"
+                    style={{ alignSelf: 'flex-end', marginTop: '5px', cursor: 'pointer', color: '#ff0000' }}
+                  >
+                    <RiDeleteBinLine className="delete-icon" size={24} style={{ color: "white", cursor: "pointer", alignContent: "center" }} />
                   </p>
                 )}
               </div>
             ))}
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="new-message-form">
+        <form onSubmit={handleSubmit} className="new-message-form" style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <input
             type="text"
             value={newMessage}
             onChange={(event) => setNewMessage(event.target.value)}
             className="new-message-input"
             placeholder="Type your message here..."
+            style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', marginBottom: '10px' }}
           />
-          <br />
-          <br />
-          <button type="submit" className="send-button">
+          <button type="submit" className="send-button" style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', background: '#007bff', color: '#fff', cursor: 'pointer' }}>
             Send
           </button>
         </form>
-        <button onClick={async () => { setRoom(0) }}> Change Room ID </button><br />
-        <button onClick={authenticate_check}> Log Out </button><br />
+        <button onClick={() => { setRoom(0) }}> Change Room ID </button><br />
+        <button onClick={authenticate_check}> Log Out </button>
 
-        <div className="know">
-          <p onClick={() => openModal(0)}>Know More</p>
-          <p onClick={() => openModal(1)}>About Us</p>
-          <p onClick={() => openModal(2)}>Privacy Policy</p>
+        <div className="know" style={{ marginTop: '20px', textAlign: 'center' }}>
+          <p onClick={() => openModal(0)} style={{ cursor: 'pointer', color: '#007bff' }}>Know More</p>
+          <p onClick={() => openModal(1)} style={{ cursor: 'pointer', color: '#007bff' }}>About Us</p>
+          <p onClick={() => openModal(2)} style={{ cursor: 'pointer', color: '#007bff' }}>Privacy Policy</p>
         </div>
       </div>
       <br />
@@ -193,10 +206,10 @@ const About = ({ setIsAuth, setEmail, Room, setRoom, Icon, setIcon }) => {
         overlayClassName="custom-overlay"
       >
         {selectedSection !== null && (
-          <div className="modal-content">
+          <div className="modal-content" style={{ padding: '20px', borderRadius: '10px', background: '#fff' }}>
             <h2>{sectionContent[selectedSection].title}</h2>
             <p>{sectionContent[selectedSection].content}</p>
-            <button onClick={closeModal} className="modal-button">
+            <button onClick={closeModal} className="modal-button" style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', background: '#007bff', color: '#fff', cursor: 'pointer' }}>
               Close
             </button>
           </div>
